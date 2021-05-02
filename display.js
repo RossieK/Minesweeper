@@ -7,33 +7,55 @@ import {
   checkLose,
 } from "./logic.js";
 
-const BOARD_SIZE = 10;
-const MINES_NUMBER = 3;
+let BOARD_SIZE = 9;
+let MINES_NUMBER = 10;
 
-const board = createBoard(BOARD_SIZE, MINES_NUMBER);
 const boardElement = document.querySelector(".board");
 const minesLeftText = document.querySelector("[data-mine-count]");
 const messageText = document.querySelector(".subtext");
+const easyBtn = document.querySelector(".easy");
+const hardBtn = document.querySelector(".hard");
 
-board.forEach((row) => {
-  row.forEach((tile) => {
-    boardElement.append(tile.element);
+let board = createBoard(BOARD_SIZE, MINES_NUMBER);
+generateTiles(board);
 
-    tile.element.addEventListener("click", () => {
-      revealTile(board, tile);
-      checkGameEnd();
-    });
-
-    tile.element.addEventListener("contextmenu", (e) => {
-      e.preventDefault();
-      markTile(tile);
-      listMinesLeft();
-    });
-  });
+easyBtn.addEventListener("click", () => {
+  BOARD_SIZE = 9;
+  MINES_NUMBER = 10;
+  board = createBoard(BOARD_SIZE, MINES_NUMBER);
+  boardElement.innerHTML = "";
+  generateTiles(board);
 });
 
-boardElement.style.setProperty("--size", BOARD_SIZE);
-minesLeftText.textContent = MINES_NUMBER;
+hardBtn.addEventListener("click", () => {
+  BOARD_SIZE = 16;
+  MINES_NUMBER = 40;
+  board = createBoard(BOARD_SIZE, MINES_NUMBER);
+  boardElement.innerHTML = "";
+  generateTiles(board);
+});
+
+function generateTiles(board) {
+  board.forEach((row) => {
+    row.forEach((tile) => {
+      boardElement.append(tile.element);
+
+      tile.element.addEventListener("click", () => {
+        revealTile(board, tile);
+        checkGameEnd();
+      });
+
+      tile.element.addEventListener("contextmenu", (e) => {
+        e.preventDefault();
+        markTile(tile);
+        listMinesLeft();
+      });
+    });
+  });
+
+  boardElement.style.setProperty("--size", BOARD_SIZE);
+  minesLeftText.textContent = MINES_NUMBER;
+}
 
 function listMinesLeft() {
   const markedTilesCount = board.reduce((count, row) => {
