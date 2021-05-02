@@ -5,10 +5,13 @@ const MINES_NUMBER = 10;
 
 const board = createBoard(BOARD_SIZE, MINES_NUMBER);
 const boardElement = document.querySelector('.board');
-boardElement.style.setProperty("--size", BOARD_SIZE);
+const minesLeftText = document.querySelector('[data-mine-count]');
 
 board.forEach(row => {
     row.forEach(tile => {
         boardElement.append(tile.element);
     });
 });
+
+boardElement.style.setProperty("--size", BOARD_SIZE);
+minesLeftText.textContent = MINES_NUMBER;
