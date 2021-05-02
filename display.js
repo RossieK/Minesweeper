@@ -1,4 +1,4 @@
-import { TILE_STATUSES, createBoard, markTile } from "./logic.js";
+import { TILE_STATUSES, createBoard, markTile, revealTile } from "./logic.js";
 
 const BOARD_SIZE = 10;
 const MINES_NUMBER = 10;
@@ -12,7 +12,7 @@ board.forEach(row => {
         boardElement.append(tile.element);
 
         tile.element.addEventListener('click', () => {
-
+            revealTile(board, tile);
         });
 
         tile.element.addEventListener('contextmenu', (e) => {
