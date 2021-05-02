@@ -78,10 +78,12 @@ function checkGameEnd() {
 
   if (win) {
     messageText.textContent = "You WON the game! :)";
+    messageText.classList.add("gameWon");
   }
 
   if (lose) {
     messageText.textContent = "You LOST the game! :(";
+    messageText.classList.add("gameLost");
     board.forEach((row) => {
       row.forEach((tile) => {
         if (tile.status === TILE_STATUSES.MARKED) markTile(tile);
