@@ -1,7 +1,7 @@
 import { createBoard } from "./logic.js";
 
-const BOARD_SIZE = 2;
-const MINES_NUMBER = 2;
+const BOARD_SIZE = 10;
+const MINES_NUMBER = 10;
 
 const board = createBoard(BOARD_SIZE, MINES_NUMBER);
 const boardElement = document.querySelector('.board');
