@@ -32,7 +32,8 @@ body {
 }
 
 .easy,
-.hard {
+.hard,
+.reload {
   font-family: "Podkova", serif;
   font-size: 1.2rem;
   padding: 0.5rem;
@@ -48,6 +49,14 @@ body {
 
 .hard {
   background-color: rgb(197, 146, 146);
+}
+
+.reload {
+  background-color: rgb(170, 170, 164);
+  background-image: url(./img/reload.png);
+  background-size: cover;
+  width: 2rem;
+  height: 2rem;
 }
 
 .subtext {

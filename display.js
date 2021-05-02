@@ -15,6 +15,11 @@ const minesLeftText = document.querySelector("[data-mine-count]");
 const messageText = document.querySelector(".subtext");
 const easyBtn = document.querySelector(".easy");
 const hardBtn = document.querySelector(".hard");
+const reloadBtn = document.querySelector(".reload");
+
+reloadBtn.addEventListener("click", () => {
+  document.location.reload();
+});
 
 let board = createBoard(BOARD_SIZE, MINES_NUMBER);
 generateTiles(board);
